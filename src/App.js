@@ -1,25 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Layout, Card } from 'antd';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom';
+import ActivityNew from './components/activity/activityNew'
+import AdsNew from './components/ads/adsNew'
+import ShareNew from './components/share/shareNew'
+import VideoNew from './components/video/videoNew'
+import TemplateNew from './components/template/templateNew'
 import './App.css';
+import Menu from './menu';
+
+const { Sider, Content } = Layout
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Layout>
+        <Sider style={{ minHeight: '900px'}}>
+          <Menu />
+        </Sider>
+        <Layout>
+          <Content>
+            <Card style={{ minHeight: '900px'}}>
+              <Switch>
+                <Route path="/activity/new" component={ActivityNew} />
+                <Route path="/ads/new" component={AdsNew} />
+                <Route path="/share/new" component={ShareNew} />
+                <Route path="/video/new" component={VideoNew} />
+                <Route path="/template/new" component={TemplateNew} />
+              </Switch>
+            </Card>
+          </Content>
+        </Layout>
+      </Layout>
+    </Router>
   );
 }
 
