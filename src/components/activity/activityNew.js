@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, Select, Card, message, Alert, Row, Col } from 'antd'
+import { Form, Input, Button, Select, Card, message, Alert } from 'antd'
 import RcUeditor from 'react-ueditor-wrap';
 import { post } from '../../utils/fetch'
 
