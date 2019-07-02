@@ -10,6 +10,7 @@ import DomainManager from './components/domain/domainManager'
 import ShareNew from './components/share/shareNew'
 import VideoNew from './components/video/videoNew'
 import TemplateNew from './components/template/templateNew'
+import TemplateManager from './components/template/templateManager'
 import './App.css';
 import Menu from './menu';
 
@@ -32,6 +33,7 @@ function App() {
                 <Route path="/share/new" component={ShareNew} />
                 <Route path="/video/new" component={VideoNew} />
                 <Route path="/template/new" component={TemplateNew} />
+                <Route path="/template/manager" component={TemplateManager} />
               </Switch>
             </Card>
           </Content>

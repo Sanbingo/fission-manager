@@ -28,9 +28,11 @@ class AdsNew extends React.Component {
     const that = this;
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        post('/batch/insert', {
-          entity: [{
-            ...values
+        post('/domains/batch/insert', {
+          entities: [{
+            ...values,
+            type: parseInt(values.type, 10),
+            dataStatus: 3
           }]
         }).then(({ data }) => {
           const { meta={} } = data
@@ -71,7 +73,7 @@ class AdsNew extends React.Component {
         >
           <Form {...formItemLayout} onSubmit={this.handleSubmit}>
             <FormItem label="域名名称">
-              {getFieldDecorator('title', {
+              {getFieldDecorator('name', {
                 rules: [{ required: true, message: '请输入标题!' }],
               })(
                 <Input />,
@@ -89,13 +91,6 @@ class AdsNew extends React.Component {
               rules: [{ required: true, message: '请输入实际域名' }],
             })(
               <Input />,
-            )}
-          </FormItem>
-          <FormItem label="域名状态">
-            {getFieldDecorator('dataStatus', {
-              rules: [{ required: true, message: '请选择域名状态' }],
-            })(
-              createRadios(DOMAIN_STATUS),
             )}
           </FormItem>
           </Form>

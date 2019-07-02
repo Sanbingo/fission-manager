@@ -3,17 +3,17 @@ import {
   Card,
   Table,
   Divider,
-  Tag,
   message,
 } from 'antd';
 import { TipBtn } from '../common';
+import { TEMPLATE_TYPE, TEMPLATE_STATUS } from '../common/consts';
 import { post } from '../../utils/fetch'
-import DomainNew from './domainNew'
+// import DomainNew from './domainNew'
 
 
-export default class DomainManager extends React.Component {
+export default class TemplateManager extends React.Component {
   state = {
-    domainList: [],
+    templateList: [],
   }
   componentWillMount() {
     this.loadList()
@@ -27,7 +27,7 @@ export default class DomainManager extends React.Component {
           message.success(msg || '操作成功')
         } else {
           this.setState({
-            domainList: data.data
+            templateList: data.data
           })
         }
       } else {
@@ -36,10 +36,10 @@ export default class DomainManager extends React.Component {
     })
   }
   loadList = () => {
-    this.request('/domains/queryAll', {})
+    this.request('/templates/queryAll', {})
   }
   handleEnable = (id) => {
-    this.request('/domains/enable', {
+    this.request('/templates/enable', {
       entity: {
         id,
         dataStatus: 1
@@ -47,7 +47,7 @@ export default class DomainManager extends React.Component {
     }, this.loadList)
   }
   handleDisable = (id) => {
-    this.request('/domains/enable', {
+    this.request('/templates/enable', {
       entity: {
         id,
         dataStatus: 2
@@ -55,7 +55,7 @@ export default class DomainManager extends React.Component {
     }, this.loadList)
   }
   handleDelete = (id) => {
-    this.request('/domains/batch/hardRemove', {
+    this.request('/templates/batch/hardRemove', {
       batchRemoveIds: [id]
     }, this.loadList)
   }
@@ -66,37 +66,25 @@ export default class DomainManager extends React.Component {
   }, {
     key: 'name',
     dataIndex: 'name',
-    title: '域名名称'
+    title: '模板名称'
   }, {
     key: 'type',
     dataIndex: 'type',
-    title: '域名类型',
+    title: '模板类型',
     render: (text) => {
-      if (text === 1) {
-        return '危险域名'
-      } else if (text === 2) {
-        return '安全域名'
-      } else {
-        return '其他域名'
-      }
+      return TEMPLATE_TYPE[text]
     }
   }, {
     key: 'dataStatus',
     dataIndex: 'dataStatus',
-    title: '域名状态',
+    title: '模板状态',
     render: (text) => {
-      if(text === 1) {
-        return <Tag color="#87d068">启用</Tag>
-      } else if (text === 2) {
-        return <Tag color="#9e9e9e">禁用</Tag>
-      } else {
-        return <Tag color="#108ee9">未使用</Tag>
-      }
+      return TEMPLATE_STATUS[text]
     }
   }, {
-    key: 'domain',
-    dataIndex: 'domain',
-    title: '域名值'
+    key: 'uri',
+    dataIndex: 'uri',
+    title: '模板地址'
   }, {
     key: 'createTime',
     dataIndex: 'createTime',
@@ -110,8 +98,6 @@ export default class DomainManager extends React.Component {
       return (
         <span>
           {record.dataStatus === 1 ? <TipBtn onOk={() => this.handleDisable(id)}>禁用</TipBtn> : <TipBtn onOk={() => this.handleEnable(id)}>启用</TipBtn>}
-          <Divider type="vertical" />
-          <TipBtn onOk={() => this.handleDelete(id)}><span style={{ color: 'red' }}>删除</span></TipBtn>
         </span>
       );
     }
@@ -119,11 +105,11 @@ export default class DomainManager extends React.Component {
   render() {
     return (
       <Card title="域名管理">
-        <DomainNew callback={this.loadList} />
+        {/* <DomainNew callback={this.loadList} /> */}
         <Table
           style={{ marginTop: '15px' }}
           columns={this.columns}
-          dataSource={this.state.domainList}
+          dataSource={this.state.templateList}
         />
       </Card>
     );

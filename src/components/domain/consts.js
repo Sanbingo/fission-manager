@@ -5,5 +5,6 @@ export const DOMAIN_STYLE = {
 
 export const DOMAIN_STATUS = {
   1: '启用',
-  3: '禁用'
+  2: '禁用',
+  3: '未使用'
 }
