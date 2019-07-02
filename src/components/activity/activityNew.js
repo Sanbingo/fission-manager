@@ -87,7 +87,7 @@ class ActivityNew extends React.Component {
       },
     };
     return (
-      <Card title="新建页面">
+      <Card title="新建页面33">
         <Form {...formItemLayout} onSubmit={this.handleSubmit}>
           <FormItem label="标题">
             {getFieldDecorator('pageName', {
