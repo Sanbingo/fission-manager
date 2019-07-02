@@ -6,6 +6,7 @@ import {
   Route
 } from 'react-router-dom';
 import ActivityNew from './components/activity/activityNew'
+import ActivityManager from './components/activity/activityManager'
 import DomainManager from './components/domain/domainManager'
 import ShareNew from './components/share/shareNew'
 import VideoNew from './components/video/videoNew'
@@ -29,6 +30,7 @@ function App() {
             <Card style={{ minHeight: '900px'}}>
               <Switch>
                 <Route path="/activity/new" component={ActivityNew} />
+                <Route path="/activity/manager" component={ActivityManager} />
                 <Route path="/domain/manager" component={DomainManager} />
                 <Route path="/share/new" component={ShareNew} />
                 <Route path="/video/new" component={VideoNew} />

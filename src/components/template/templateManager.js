@@ -104,7 +104,7 @@ export default class TemplateManager extends React.Component {
   }]
   render() {
     return (
-      <Card title="域名管理">
+      <Card title="模板管理">
         {/* <DomainNew callback={this.loadList} /> */}
         <Table
           style={{ marginTop: '15px' }}
