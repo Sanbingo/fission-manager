@@ -40,14 +40,11 @@ export default class MenuComponent extends React.Component {
     }]
   }, {
     title: '域名',
-    url: 'ads',
+    url: 'domain',
     icon: 'edit',
     children: [{
-      title: '新建域名',
-      url: '/ads/new'
-    }, {
       title: '域名管理',
-      url: '/ads/manager'
+      url: '/domain/manager'
     }]
   }, {
     title: '视频',
