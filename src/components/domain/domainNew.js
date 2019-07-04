@@ -13,7 +13,7 @@ import { post } from '../../utils/fetch'
 const FormItem = Form.Item;
 const TITLE = '新建域名'
 
-class AdsNew extends React.Component {
+class DomainNew extends React.Component {
   state = { visible: false };
 
   showModal = () => {
@@ -100,4 +100,4 @@ class AdsNew extends React.Component {
   }
 }
 
-export default Form.create()(AdsNew)
+export default Form.create()(DomainNew)

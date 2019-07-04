@@ -122,6 +122,7 @@ class ActivityNew extends React.Component {
                 <Option key="3" value={3}>活动</Option>
                 <Option key="2" value={2}>分享</Option>
                 <Option key="1" value={1}>广告</Option>
+                <Option key="4" value={4}>壳</Option>
               </Select>,
             )}
           </FormItem>

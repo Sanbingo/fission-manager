@@ -47,6 +47,14 @@ export default class MenuComponent extends React.Component {
       url: '/domain/manager'
     }]
   }, {
+    title: '推广',
+    url: 'popular',
+    icon: 'appstore',
+    children: [{
+      title: '推广管理',
+      url: '/popular/manager'
+    }]
+  }, {
     title: '视频',
     url: 'video',
     icon: 'youtube',

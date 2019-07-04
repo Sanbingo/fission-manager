@@ -73,6 +73,7 @@ class TemplateNew extends React.Component {
                 <Option value="3">活动</Option>
                 <Option value="2">分享</Option>
                 <Option value="1">广告</Option>
+                <Option value="4">壳</Option>
               </Select>,
             )}
           </FormItem>

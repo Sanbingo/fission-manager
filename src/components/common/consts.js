@@ -8,6 +8,9 @@ export const TEMPLATE_TYPE = {
   1: '广告',
   2: '分享',
   3: '活动',
+  4: '推广',
+  5: '模板',
+  6: '上传',
 }
 
 export const TEMPLATE_STATUS = {
