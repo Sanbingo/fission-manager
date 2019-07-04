@@ -114,18 +114,18 @@ class PopularNew extends React.Component {
                 <Input />
               )}
             </FormItem>
-            <FormItem label="推广页面">
+            <FormItem label="推广模板">
             {getFieldDecorator('shellId', {
-              rules: [{ required: true, message: '请选择域名类型' }],
+              rules: [{ required: true, message: '请选择' }],
             })(
               <Select>
-                {this.renderTemplatesOptions}
+                {this.renderTemplatesOptions()}
               </Select>
             )}
           </FormItem>
             <FormItem label="活动页面">
             {getFieldDecorator('themes', {
-              rules: [{ required: true, message: '请选择域名类型' }],
+              rules: [{ required: true, message: '请选择活动页面' }],
             })(
               <Select mode="multiple">
                 {this.renderOptionsByType(3)}
@@ -134,7 +134,7 @@ class PopularNew extends React.Component {
           </FormItem>
             <FormItem label="分享页面">
             {getFieldDecorator('shares', {
-              rules: [{ required: true, message: '请选择域名类型' }],
+              rules: [{ required: true, message: '请选择分享页面' }],
             })(
               <Select mode="multiple">
                 {this.renderOptionsByType(2)}
@@ -143,7 +143,7 @@ class PopularNew extends React.Component {
           </FormItem>
             <FormItem label="广告页面">
             {getFieldDecorator('ads', {
-              rules: [{ required: true, message: '请选择域名类型' }],
+              rules: [{ required: true, message: '请选择广告页面' }],
             })(
               <Select mode="multiple">
                 {this.renderOptionsByType(1)}
