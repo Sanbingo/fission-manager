@@ -55,15 +55,12 @@ export default class MenuComponent extends React.Component {
       url: '/popular/manager'
     }]
   }, {
-    title: '视频',
-    url: 'video',
+    title: '资源服务',
+    url: 'assets',
     icon: 'youtube',
     children: [{
-      title: '新建视频',
-      url: '/video/new'
-    }, {
-      title: '视频管理',
-      url: '/video/manager'
+      title: '资源上传',
+      url: '/assets/new'
     }]
   }]
   renderTitle = (item) => {

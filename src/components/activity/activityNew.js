@@ -48,7 +48,7 @@ class ActivityNew extends React.Component {
         }).then(({data}) => {
           const { meta={} } = data
           if (meta.success) {
-            message.success('创建成功~')
+            message.success('上传成功~')
             this.setState({
               address: data.data
             })
@@ -63,7 +63,7 @@ class ActivityNew extends React.Component {
   }
   renderTemplateOptions = () => {
     const { templateList } = this.state;
-    return templateList.map(item => <Option key={item.id} value={item.id}>{item.name}</Option>)
+    return templateList.filter(item => item.dataStatus === 1).map(item => <Option key={item.id} value={item.id}>{item.name}</Option>)
   }
   renderRcUeditor = () => {
     const { getFieldValue } = this.props.form;
@@ -140,8 +140,8 @@ class ActivityNew extends React.Component {
 
           <FormItem wrapperCol={{ span: 8, offset: 2 }}>
             <Button type="primary" htmlType="submit">创建</Button>
-            {this.state.address && <Alert type="success" message={this.state.address} />}
           </FormItem>
+          {this.state.address && <Alert type="success" message={this.state.address} />}
         </Form>
       </Card>
     );

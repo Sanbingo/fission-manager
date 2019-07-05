@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body style="height: 100%; margin: 0">
+    <div id="container" style="height: 100%"></div>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+    <script type="text/javascript"
+        src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        myChart.showLoading();
+        $.get('http://139.196.86.217:8090/fission/pages/relation', function (data) {
+            myChart.hideLoading();
+            var typeSet = new Set();
+            var pages = data.data.nodes;
+            var relations = data.data.links;
+            var nodes =[];
+            var links =[];
+            var categories = [];
+            var typeMap = [];
+            for (var i=0 ;i<pages.length;i++)
+            {
+                var node = new Object;
+                node.id = pages[i].id;
+                node.category = pages[i].type -1;
+                typeSet.add(pages[i].type);
+                node.itemStyle = null;
+                node.name = pages[i].name;
+                node.value = parseInt(pages[i].viewsCount);
+                node.attributes = pages[i];
+                node.symbolSize = node.value/10000 +20;
+                node.label = {
+                    normal: {
+                        show: node.symbolSize > 5
+                    }
+                };
+                nodes[i] =node;
+                typeMap[node.category] =( typeMap[node.category] ? typeMap[node.category] :0) +1;
+            }
+            var counts = [];
+            nodes.forEach(function(node){
+                var count =  counts[node.category] ? counts[node.category] :0 ;
+                counts[node.category] =count +1;
+
+               var yPartition = 30/typeMap[node.category];
+               var xPartition = 30/typeMap.length;
+               node.x = 15 -xPartition*node.category;
+               node.y = 15-yPartition*(1+count);
+            })
+            for (var i=0 ;i<relations.length;i++)
+            {
+                var link = new Object;
+                link.id = relations[i].id;
+                link.source = relations[i].fromId;
+                link.target = relations[i].toId
+                links[i] =link;
+            }
+            var index = 0;
+            
+            typeSet.forEach(function (element, sameElement, set) {  
+
+                var typeName;
+                if(element === 1)
+                {
+                    typeName = '广告';
+                }else if(element === 2)
+                {
+                    typeName = '分享';
+
+                }else if(element === 3){
+                    typeName = '活动';
+
+                }else{
+                    typeName = '未知';
+                }
+                categories[index] = {
+                    name: typeName
+                };
+                index++;
+            })
+            
+
+            option = {
+                title: {
+                    text: '页面关系',
+                    subtext: 'Default layout',
+                    top: 'bottom',
+                    left: 'right'
+                },
+                tooltip: {},
+                legend: [{
+                    // selectedMode: 'single',
+                    data: categories.map(function (a) {
+                        return a.name;
+                    })
+                }],
+                animationDuration: 1500,
+                animationEasingUpdate: 'quinticInOut',
+                series: [
+                    {
+                        name: '页面:点击量',
+                        type: 'graph',
+                        layout: 'none',
+                        data: nodes,
+                        links: links,
+                        categories: categories,
+                        roam: true,
+                        focusNodeAdjacency: true,
+                        itemStyle: {
+                            normal: {
+                                borderColor: '#fff',
+                                borderWidth: 1,
+                                shadowBlur: 10,
+                                shadowColor: 'rgba(0, 0, 0, 0.3)'
+                            }
+                        },
+                        label: {
+                            position: 'right',
+                            formatter: '{b}'
+                        },
+                        lineStyle: {
+                            color: 'source',
+                            curveness: 0.3
+                        },
+                        emphasis: {
+                            lineStyle: {
+                                width: 10
+                            }
+                        }
+                    }
+                ]
+            };
+
+            myChart.setOption(option, true);
+        });;
+        // if (option && typeof option === "object") {
+        //     myChart.setOption(option, true);
+        // }
+    </script>
+</body>
+
+</html>

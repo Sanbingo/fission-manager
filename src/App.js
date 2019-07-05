@@ -9,7 +9,7 @@ import ActivityNew from './components/activity/activityNew'
 import ActivityManager from './components/activity/activityManager'
 import DomainManager from './components/domain/domainManager'
 import ShareNew from './components/share/shareNew'
-import VideoNew from './components/video/videoNew'
+import AssetsNew from './components/assets/assetsNew'
 import TemplateNew from './components/template/templateNew'
 import TemplateManager from './components/template/templateManager'
 import PopularManager from './components/popular/popularManager'
@@ -34,7 +34,7 @@ function App() {
                 <Route path="/activity/manager" component={ActivityManager} />
                 <Route path="/domain/manager" component={DomainManager} />
                 <Route path="/share/new" component={ShareNew} />
-                <Route path="/video/new" component={VideoNew} />
+                <Route path="/assets/new" component={AssetsNew} />
                 <Route path="/template/new" component={TemplateNew} />
                 <Route path="/template/manager" component={TemplateManager} />
                 <Route path="/popular/manager" component={PopularManager} />
