@@ -275,7 +275,7 @@ $(function () {
   }
 
   function openPacket() {
-  	var reqUrl = obj.jumpapi +'/' +window.typeId.split('_')[0] +'/'+ window.typeId.split('_')[1]
+  	var reqUrl = obj.jumpapi +'/' +window.typeId.split('_')[0] +'/'+ window.typeId.split('_')[1]+window.location.search
     $.get(reqUrl, function(data, status){
     	
       if (data) {

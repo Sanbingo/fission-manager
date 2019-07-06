@@ -84,12 +84,13 @@ export default class ActivityManager extends React.Component {
     width: 400,
     render: (text, {
         innerUri,
-        outerUri
+        outerUri,
+        randomSafeDomain
       }) => {
       return (
         <div>
           <p>内部地址：{innerUri || '-'}</p>
-          <p>跳转地址：{outerUri || '-'}</p>
+          <p>跳转地址：{randomSafeDomain ? `${randomSafeDomain}${outerUri}` : outerUri}</p>
         </div>
       );
     }

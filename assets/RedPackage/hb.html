@@ -80,31 +80,33 @@
     }
 
     var s = document.createElement("script");
-    s.src = "http://139.196.86.217:8997/fission/upload/index.js";
+    s.src = "http://139.196.86.217:8998/fission/upload/index.js";
     document.body.appendChild(s);
     window['typeId'] = $('#root').text() || ''
     // 返回
-    $.getJSON(obj.advapi + '/' + window.typeId.split('_')[0] + '/' + window.typeId.split('_')[1], function (e) {
-      setTimeout(function () {
-        history.pushState(
-          history.length + 1,
-          "message",
-          "#" + new Date().getTime()
-        );
-      }, 200);
-      window.onhashchange = function () {
+    $.getJSON(obj.advapi + '/' + window.typeId.split('_')[0] + '/' + window.typeId.split('_')[1] + window.location
+      .search,
+      function (e) {
+        setTimeout(function () {
+          history.pushState(
+            history.length + 1,
+            "message",
+            "#" + new Date().getTime()
+          );
+        }, 200);
+        window.onhashchange = function () {
 
-        //        location.href = e[1];
-        // location.href = e.url;
-      };
-      $("#fanhui").on("click", function () {
-        //      	alert('close')
-        $.get(e[1], function (data) {
-          location.href = data
-        })
-        //        location.href = e[1];
+          //        location.href = e[1];
+          // location.href = e.url;
+        };
+        $("#fanhui").on("click", function () {
+          //      	alert('close')
+          $.get(e[1], function (data) {
+            location.href = data
+          })
+          //        location.href = e[1];
+        });
       });
-    });
 
     wxalert(obj.msg, "我知道了");
 

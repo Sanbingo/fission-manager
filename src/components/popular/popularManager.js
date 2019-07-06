@@ -33,7 +33,23 @@ export default class PopularManager extends React.Component {
   columns = [{
         key: 'id',
         dataIndex: 'id',
-        title: 'ID'
+        title: '查看',
+        render: (text, {
+            randomSafeDomain,
+            outerUri
+          }) => {
+          return <a href={`http://${randomSafeDomain}${outerUri}`} target="__blank">点击查看</a>
+        }
+      }, {
+        key: 'address',
+        dataIndex: 'address',
+        title: '地址',
+        render: (text, {
+            randomSafeDomain,
+            outerUri
+          }) => {
+          return `http://${randomSafeDomain}${outerUri}`
+        }
       }, {
         key: 'name',
         dataIndex: 'name',
